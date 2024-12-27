@@ -1,4 +1,3 @@
-
 # Fast Llama Inference with SambaNova
 
 https://www.unremarkable.ai/fast-llama-inference-with-sambanova/?ref=github
@@ -18,20 +17,20 @@ Make sure you have the following environment variables needed:
 
 - `SAMBANOVA_API_KEY` - Your [SambaNova](https://cloud.sambanova.ai/apis?ref=unremarkable.ai) API Key.
 
-All demos & expierments leverage the following tools:
+All demos & experiments leverage the following tools:
 
 1. Use of [Inquirer.js](https://www.npmjs.com/package/inquirer?ref=unremarkable.ai) with the CLI to prompt for user questions.
 2. The [Vercel AI SDK](https://sdk.vercel.ai?ref=unremarkable.ai) is used to invoke and stream model output to the CLI.
 3. Using the `Meta-Llama-3.3-70B-Instruct` model via hyper fast inference thanks to [SambaNova](https://sambanova.ai?ref=unremarkable.ai).
 
 ```shell
-npm run demo
+npm run chat
 ```
 
 If you are testing other providers such as OpenAI or Bedrock you will need to make sure you have supporting API keys in your environment. For example `OPENAI_API_KEY` and standard AWS environment variables.
 
 ```shell
-MODEL=bedrock npm run demo
+MODEL=bedrock npm run chat
 ```
 
 ## Notes
