@@ -3,7 +3,20 @@ import { inquire } from "./shared/inquire.js";
 import { model } from "./shared/providers.js";
 import type { CoreMessage } from "ai";
 
-const messages: CoreMessage[] = [];
+const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
+
+let systemRoleName: "system" | "user" =
+  model.modelId === "o1-mini" ? "user" : "system";
+
+const system = `
+Cutting Knowledge Date: December 2023
+Today Date: ${timestamp}
+
+You are a helpful assistant.
+`.trim();
+
+const messages: CoreMessage[] = [{ role: systemRoleName, content: system }];
+
 const tokenUsage = {
   promptTokens: 0,
   completionTokens: 0,
@@ -22,21 +35,15 @@ function updateUsage(usage: any) {
 async function chat(newUserMessage: string) {
   messages.push({ role: "user", content: newUserMessage });
   const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
-  const stream = streamText({
+  const options = {
     model: model,
-    system: `
-Cutting Knowledge Date: December 2023
-Today Date: ${timestamp}
-
-You are a helpful assistant.
-`.trim(),
     messages: messages,
     temperature: 0.1,
-    maxTokens: 2000,
-    onFinish: async (result) => {
+    onFinish: async (result: any) => {
       updateUsage(result.usage);
     },
-  });
+  };
+  const stream = streamText(options);
   let fullResponse = "";
   for await (const chunk of stream.textStream) {
     process.stdout.write(chunk);
