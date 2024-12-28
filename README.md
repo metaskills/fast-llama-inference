@@ -30,6 +30,7 @@ npm run chat
 If you are testing other providers such as OpenAI or Bedrock you will need to make sure you have supporting API keys in your environment. For example `OPENAI_API_KEY` and standard AWS environment variables.
 
 ```shell
+MODEL=gpt-4o npm run chat
 MODEL=bedrock npm run chat
 ```
 

@@ -34,7 +34,6 @@ function updateUsage(usage: any) {
 
 async function chat(newUserMessage: string) {
   messages.push({ role: "user", content: newUserMessage });
-  const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
   const options = {
     model: model,
     messages: messages,
