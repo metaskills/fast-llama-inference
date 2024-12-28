@@ -12,6 +12,11 @@ const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY,
 })("llama-3.3-70b-versatile");
 
+const lmstudio = createOpenAI({
+  name: "lmstudio",
+  baseURL: "http://localhost:1234/v1",
+})("llama-3.2-3b-instruct");
+
 const sambanova = createOpenAI({
   name: "sambanova",
   apiKey: process.env.SAMBANOVA_API_KEY,
@@ -24,6 +29,7 @@ const models: { [key: string]: LanguageModel } = {
   "o1-mini": o1mini,
   bedrock,
   groq,
+  lmstudio,
 };
 const model = process.env.MODEL ? models[process.env.MODEL] : sambanova;
 
