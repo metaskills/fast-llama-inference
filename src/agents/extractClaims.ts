@@ -1,13 +1,12 @@
 import { Provider } from "../shared/provider.js";
 
-const provider = new Provider({ functionId: "ExtractClaims" });
+const provider = new Provider({ functionId: "extractclaims" });
 
 function prompt(content: string) {
   return `
 You are an expert at extracting claims from text.
 
-Your task is to identify and list all claims present, true or false, in the given text. Each claim should be a single, verifiable statement.
-If the input content is very lengthy, then pick the major claims.
+Your task is to identify and list up to three claims present, true or false, in the given text. Each claim should be a single, verifiable statement. If the input content is very lengthy, then pick the top three major claims.
 
 For each claim, also provide the original part of the sentence from which the claim is derived.
 Present the claims as a JSON array of objects. Each object should have two keys:
@@ -17,7 +16,11 @@ Present the claims as a JSON array of objects. Each object should have two keys:
 
 Do not include any additional text or commentary.
 
-Here is the content: ${content}
+Here is the content: 
+
+<content>
+${content}
+</content>
 
 Return the output strictly as a JSON array of objects following this schema:
 [
@@ -28,13 +31,18 @@ Return the output strictly as a JSON array of objects following this schema:
   ...
 ]
 
-Output the result as valid JSON, strictly adhering to the defined schema. Ensure there are no markdown codes or additional elements included in the output. Do not add anything else. Return only JSON.
+Output the result as valid JSON, strictly adhering to the defined schema. Ensure there are no markdown fenced code blocks or additional elements included in the output. Do not add anything else.
 `.trim();
 }
 
-async function extractClaims(content: string) {
+interface Claim {
+  claim: string;
+  original_text: string;
+}
+
+async function extractClaims(content: string): Promise<Claim[]> {
   const result = await provider.generateText({ prompt: prompt(content) });
-  console.log(result.text);
+  return JSON.parse(result.text);
 }
 
 export { extractClaims };

@@ -6,7 +6,9 @@
   "scripts": {
     "build": "rm -rf dist && npx tsc",
     "chat": "node dist/chat.js",
-    "tools": "node dist/tools.js"
+    "tools": "node dist/tools.js",
+    "demo": "node dist/demo.js",
+    "evalExtractClaims": "node dist/evals/extractClaims.js"
   },
   "dependencies": {
     "@ai-sdk/amazon-bedrock": "^1.0.6",

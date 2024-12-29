@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { config } from "dotenv";
 import { registerOTel } from "@vercel/otel";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 config();
 
@@ -20,6 +24,11 @@ class Env {
   constructor() {
     if (Env.#instance) return Env.#instance;
     Env.#instance = this;
+  }
+
+  readFile(projectPath: string) {
+    const rpath = path.join(__dirname, `../../${projectPath}`);
+    return fs.readFileSync(rpath, "utf-8");
   }
 }
 
