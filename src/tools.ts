@@ -1,6 +1,6 @@
 import { generateText } from "ai";
 import { inquire } from "./shared/inquire.js";
-import { model } from "./shared/providers.js";
+import { provider } from "./shared/provider.js";
 import { tool } from "ai";
 import { z } from "zod";
 
@@ -31,7 +31,7 @@ function toolCalled(data: any) {
 
 async function chat(query: string) {
   const options = {
-    model: model,
+    model: provider.model,
     system: system,
     prompt: query,
     temperature: 0.1,

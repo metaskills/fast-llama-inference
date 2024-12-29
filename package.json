@@ -13,6 +13,9 @@
     "@ai-sdk/groq": "^1.0.9",
     "@ai-sdk/openai": "^1.0.11",
     "ai": "^4.0.22",
+    "autoevals": "^0.0.111",
+    "braintrust": "^0.0.177",
+    "dotenv": "^16.4.7",
     "inquirer": "^12.3.0",
     "zod": "^3.24.1"
   },
