@@ -7,11 +7,34 @@ class Provider {
   completionTokens: number = 0;
   totalTokens: number = 0;
 
-  constructor(public model: LanguageModel) {}
+  model: LanguageModel;
+  private _commonOptions: any;
+
+  constructor(options: any = {}) {
+    this.model = model;
+    this.commonOptions.experimental_telemetry.functionId = options?.functionId;
+  }
+
+  get commonOptions() {
+    if (!this._commonOptions) {
+      this._commonOptions = {
+        model: this.model,
+        temperature: 0.1,
+        maxSteps: 2,
+        experimental_telemetry: {
+          isEnabled: true,
+          metadata: {
+            provider: this.model.provider,
+          },
+        },
+      };
+    }
+    return this._commonOptions;
+  }
 
   async generateText(options: Partial<typeof _generateText> = {}) {
     const result = await _generateText({
-      ...this.#commonOptions(),
+      ...this.commonOptions,
       ...options,
     });
     this.#updateUsage(result.usage);
@@ -23,7 +46,7 @@ class Provider {
       onFinish: async (result: any) => {
         this.#updateUsage(result.usage);
       },
-      ...this.#commonOptions(),
+      ...this.commonOptions,
       ...options,
     });
     return stream;
@@ -34,20 +57,6 @@ class Provider {
       promptTokens: this.promptTokens,
       completionTokens: this.completionTokens,
       totalTokens: this.totalTokens,
-    };
-  }
-
-  #commonOptions() {
-    return {
-      model: this.model,
-      temperature: 0.1,
-      maxSteps: 2,
-      experimental_telemetry: {
-        isEnabled: true,
-        metadata: {
-          provider: this.model.provider,
-        },
-      },
     };
   }
 
@@ -62,6 +71,4 @@ class Provider {
   }
 }
 
-const provider = new Provider(model);
-
-export { provider };
+export { Provider };

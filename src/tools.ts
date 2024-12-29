@@ -1,8 +1,10 @@
 import { generateText } from "ai";
 import { inquire } from "./shared/inquire.js";
-import { provider } from "./shared/provider.js";
+import { Provider } from "./shared/provider.js";
 import { tool } from "ai";
 import { z } from "zod";
+
+const provider = new Provider({ functionId: "tools" });
 
 const system = `
 You are a helpful assistant capable of finding the current weather.

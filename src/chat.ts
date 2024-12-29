@@ -1,9 +1,9 @@
-import { streamText } from "ai";
 import { inquire } from "./shared/inquire.js";
-import { provider } from "./shared/provider.js";
+import { Provider } from "./shared/provider.js";
 import type { CoreMessage } from "ai";
 
 const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
+const provider = new Provider({ functionId: "chat" });
 
 let systemRoleName: "system" | "user" =
   provider.model.modelId === "o1-mini" ? "user" : "system";

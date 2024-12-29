@@ -1,5 +1,6 @@
-import { generateText } from "ai";
-import { provider } from "../shared/provider.js";
+import { Provider } from "../shared/provider.js";
+
+const provider = new Provider({ functionId: "ExtractClaims" });
 
 function prompt(content: string) {
   return `
