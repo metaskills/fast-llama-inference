@@ -1,8 +1,8 @@
 # Fast Llama Inference with SambaNova
 
-https://www.unremarkable.ai/fast-llama-inference-with-sambanova/?ref=github
+https://www.unremarkable.ai/exploring-compound-ai-systems-with-sambanova-llama-3-3
 
-![Xyz](images/xyz.png)
+![Xyz](images/samba-nova.png)
 
 ## Setup
 
