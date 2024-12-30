@@ -76,4 +76,7 @@ await Eval("Verify Claim", {
       },
     }),
   ],
+  metadata: {
+    model: env.model.modelId,
+  },
 });

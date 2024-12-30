@@ -33,5 +33,8 @@ await Eval("Extract Claims", {
       },
     }),
   ],
+  metadata: {
+    model: env.model.modelId,
+  },
   trialCount: 3,
 });

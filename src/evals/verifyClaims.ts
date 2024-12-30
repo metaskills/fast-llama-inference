@@ -17,5 +17,8 @@ await Eval("Verify Claims", {
     return verifications.map((v) => v.assessment);
   },
   scores: [JSONDiff],
+  metadata: {
+    model: env.model.modelId,
+  },
   trialCount: 3,
 });
