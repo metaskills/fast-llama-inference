@@ -22,7 +22,7 @@ const sambanova = createOpenAI({
   name: "sambanova",
   apiKey: process.env.SAMBANOVA_API_KEY,
   baseURL: "https://api.sambanova.ai/v1",
-})("Meta-Llama-3.1-70B-Instruct");
+})("Meta-Llama-3.3-70B-Instruct");
 
 const models: { [key: string]: LanguageModel } = {
   sambanova,
