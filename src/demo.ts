@@ -1,7 +1,15 @@
 import env from "./shared/env.js";
-import { extractClaims } from "./agents/extractClaims.js";
-import { verifyClaim } from "./agents/verifyClaim.js";
+import { verifyClaims } from "./agents/verifyClaims.js";
 
 const bedrock = env.readFile("data/bedrock-cross-region.md");
-// const claims = await extractClaims(bedrock);
-// const verified = await verifyClaim(claims[0].claim, bedrock, claims[0].sources);
+const verifications = await verifyClaims(bedrock);
+
+verifications.forEach((verification) => {
+  const emoji = verification.assessment ? "✅" : "❌";
+  console.log(`${emoji} ${verification.claim}`);
+  console.log(`   Summary: ${verification.summary}`);
+  if (verification.fixed_claim) {
+    console.log(`   Fixed Claim: ${verification.fixed_claim}`);
+  }
+  console.log("");
+});

@@ -67,7 +67,9 @@ class Provider {
     this.promptTokens += usage?.promptTokens || 0;
     this.completionTokens += usage?.completionTokens || 0;
     this.totalTokens += usage?.totalTokens || 0;
-    console.log("\n");
+    if (process.env.DEBUG) {
+      console.log("\n");
+    }
   }
 }
 

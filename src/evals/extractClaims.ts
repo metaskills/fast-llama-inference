@@ -3,13 +3,11 @@ import { Eval } from "braintrust";
 import { ValidJSON } from "autoevals";
 import { extractClaims } from "../agents/extractClaims.js";
 
-const bedrock = env.readFile("data/bedrock-cross-region.md");
-
 await Eval("Extract Claims", {
   data: () => {
     return [
       {
-        input: bedrock,
+        input: env.readFile("data/bedrock-cross-region.md"),
         expected: 1,
       },
     ];

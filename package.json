@@ -9,7 +9,8 @@
     "tools": "node dist/tools.js",
     "demo": "node dist/demo.js",
     "evalExtractClaims": "node dist/evals/extractClaims.js",
-    "evalVerifyClaim": "node dist/evals/verifyClaim.js"
+    "evalVerifyClaim": "node dist/evals/verifyClaim.js",
+    "evalVerifyClaims": "node dist/evals/verifyClaims.js"
   },
   "dependencies": {
     "@ai-sdk/amazon-bedrock": "^1.0.6",

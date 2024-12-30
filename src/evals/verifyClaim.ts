@@ -29,7 +29,7 @@ const sources = [
   env.readFile("data/bedrock-cross-region/3.md"),
 ];
 
-await Eval("Verify Claims", {
+await Eval("Verify Claim", {
   data: () => {
     return [
       {
@@ -40,22 +40,22 @@ await Eval("Verify Claims", {
         },
         expected: 1,
       },
-      // {
-      //   input: {
-      //     claim: claims[1].claim,
-      //     original_text: claims[1].original_text,
-      //     sources: sources,
-      //   },
-      //   expected: 1,
-      // },
-      // {
-      //   input: {
-      //     claim: claims[2].claim,
-      //     original_text: claims[2].original_text,
-      //     sources: sources,
-      //   },
-      //   expected: 1,
-      // },
+      {
+        input: {
+          claim: claims[1].claim,
+          original_text: claims[1].original_text,
+          sources: sources,
+        },
+        expected: 1,
+      },
+      {
+        input: {
+          claim: claims[2].claim,
+          original_text: claims[2].original_text,
+          sources: sources,
+        },
+        expected: 1,
+      },
     ];
   },
   task: async (input) => {
@@ -67,9 +67,9 @@ await Eval("Verify Claims", {
         type: "object",
         properties: {
           claim: { type: "string" },
-          assessment: { type: "boolean" },
+          assessment: { type: ["boolean", "null"] },
           summary: { type: "string" },
-          fixed_claim: { type: "string" },
+          fixed_claim: { type: ["string", "null"] },
         },
         required: ["claim", "assessment", "summary", "fixed_claim"],
         additionalProperties: false,
