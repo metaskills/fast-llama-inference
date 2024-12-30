@@ -25,13 +25,13 @@ All demos & experiments leverage the following tools:
 
 ```shell
 npm run demo
+npm run evalVerifyClaims
 ```
 
 If you are testing other providers such as OpenAI or Bedrock you will need to make sure you have supporting API keys in your environment. For example `OPENAI_API_KEY` and standard AWS environment variables.
 
 ```shell
-MODEL=gpt-4o npm run demo
-MODEL=bedrock npm run demo
+MODEL=bedrock npm run evalVerifyClaims
 ```
 
 ## Notes

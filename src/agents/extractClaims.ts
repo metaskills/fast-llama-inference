@@ -42,7 +42,11 @@ interface Claim {
 
 async function extractClaims(content: string): Promise<Claim[]> {
   const result = await provider.generateText({ prompt: prompt(content) });
-  return JSON.parse(result.text);
+  const cleanedText = result.text
+    .trim()
+    .replace(/^```json\s*|```$/g, "")
+    .trim();
+  return JSON.parse(cleanedText);
 }
 
 export { extractClaims };
