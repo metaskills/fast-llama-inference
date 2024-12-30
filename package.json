@@ -8,7 +8,8 @@
     "chat": "node dist/chat.js",
     "tools": "node dist/tools.js",
     "demo": "node dist/demo.js",
-    "evalExtractClaims": "node dist/evals/extractClaims.js"
+    "evalExtractClaims": "node dist/evals/extractClaims.js",
+    "evalVerifyClaim": "node dist/evals/verifyClaim.js"
   },
   "dependencies": {
     "@ai-sdk/amazon-bedrock": "^1.0.6",
