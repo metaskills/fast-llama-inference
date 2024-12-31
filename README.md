@@ -1,6 +1,6 @@
 # Fast Llama Inference with SambaNova
 
-https://www.unremarkable.ai/exploring-compound-ai-systems-with-sambanova-llama-3-3
+https://www.unremarkable.ai/exploring-accelerated-compound-ai-systems-with-sambanova-llama-3-3/
 
 ![Xyz](images/samba-nova.png)
 
@@ -35,12 +35,6 @@ MODEL=bedrock npm run evalVerifyClaims
 ```
 
 ## Notes
-
-My first use of LLama 3.3 70B was with the Bedrock model after enabling it produced this error below. Simple fix was to use the `us.` prefix for cross-region inference support. More here: https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html
-
-```
-ValidationException: Invocation of model ID meta.llama3-3-70b-instruct-v1:0 with on-demand throughput isn’t supported. Retry your request with the ID or ARN of an inference profile that contains this model.
-```
 
 The bedrock-cross-region.md file contains the following claims which the demo verifies.
 
