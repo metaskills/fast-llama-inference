@@ -20,11 +20,18 @@ const messages: CoreMessage[] = [{ role: systemRoleName, content: system }];
 async function chat(content: string) {
   messages.push({ role: "user", content: content });
   const stream = await provider.streamText({ messages: messages });
+  let firstChunk = false;
   let fullResponse = "";
+
   for await (const chunk of stream.textStream) {
-    process.stdout.write(chunk);
-    fullResponse += chunk;
+    const text = firstChunk
+      ? chunk.replace(/^\s+/, "") // Removes leading whitespace due from <think> models like DeepSeek-R1.
+      : chunk;
+    firstChunk = true;
+    process.stdout.write(text);
+    fullResponse += text;
   }
+
   process.stdout.write("\n");
 }
 

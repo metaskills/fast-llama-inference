@@ -1,5 +1,6 @@
 import "./env.js";
 import type { LanguageModel } from "ai";
+import { wrapLanguageModel, extractReasoningMiddleware } from "ai";
 import { createGroq } from "@ai-sdk/groq";
 import { openai, createOpenAI } from "@ai-sdk/openai";
 import { bedrock as _bedrock } from "@ai-sdk/amazon-bedrock";
@@ -17,6 +18,15 @@ const lmstudio = createOpenAI({
   name: "lmstudio",
   baseURL: "http://localhost:1234/v1",
 })("llama-3.2-3b-instruct");
+
+const deepseek = wrapLanguageModel({
+  model: createOpenAI({
+    name: "sambanova",
+    apiKey: process.env.SAMBANOVA_API_KEY,
+    baseURL: "https://preview.snova.ai/v1",
+  })("DeepSeek-R1"),
+  middleware: extractReasoningMiddleware({ tagName: "think" }),
+});
 
 const sambanova = createOpenAI({
   name: "sambanova",
