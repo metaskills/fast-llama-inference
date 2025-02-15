@@ -32,6 +32,7 @@ async function chat(content: string) {
     fullResponse += text;
   }
 
+  messages.push({ role: "assistant", content: fullResponse });
   process.stdout.write("\n");
 }
 
