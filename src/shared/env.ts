@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { config } from "dotenv";
 import { registerOTel } from "@vercel/otel";
-import { model } from "../shared/models.js";
+import { model } from "../shared/models.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

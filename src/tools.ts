@@ -1,6 +1,6 @@
 import { generateText } from "ai";
-import { inquire } from "./shared/inquire.js";
-import { Provider } from "./shared/provider.js";
+import { inquire } from "./shared/inquire.ts";
+import { Provider } from "./shared/provider.ts";
 import { tool } from "ai";
 import { z } from "zod";
 

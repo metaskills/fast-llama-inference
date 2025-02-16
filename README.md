@@ -6,11 +6,12 @@ https://www.unremarkable.ai/exploring-accelerated-compound-ai-systems-with-samba
 
 ## Setup
 
-Run npm install and build. 
+Must use 23.6.0 or higher of Node.js with TypeScript support.
+
+Run npm install. 
 
 ```shell
 npm install
-npm run build
 ```
 
 Make sure you have the following environment variables needed:

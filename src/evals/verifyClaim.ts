@@ -1,7 +1,7 @@
-import env from "../shared/env.js";
+import env from "../shared/env.ts";
 import { Eval } from "braintrust";
 import { ValidJSON } from "autoevals";
-import { verifyClaim } from "../agents/verifyClaim.js";
+import { verifyClaim } from "../agents/verifyClaim.ts";
 
 const claims = [
   {

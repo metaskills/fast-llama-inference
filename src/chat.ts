@@ -1,5 +1,5 @@
-import { inquire } from "./shared/inquire.js";
-import { Provider } from "./shared/provider.js";
+import { inquire } from "./shared/inquire.ts";
+import { Provider } from "./shared/provider.ts";
 import type { CoreMessage } from "ai";
 
 const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
@@ -20,16 +20,25 @@ const messages: CoreMessage[] = [{ role: systemRoleName, content: system }];
 async function chat(content: string) {
   messages.push({ role: "user", content: content });
   const stream = await provider.streamText({ messages: messages });
-  let firstChunk = false;
+  let firstOutput = false;
   let fullResponse = "";
 
   for await (const chunk of stream.textStream) {
-    const text = firstChunk
-      ? chunk.replace(/^\s+/, "") // Removes leading whitespace due from <think> models like DeepSeek-R1.
-      : chunk;
-    firstChunk = true;
-    process.stdout.write(text);
-    fullResponse += text;
+    if (!firstOutput) {
+      if (chunk.trim() === "") {
+        // Skip writing if the chunk is only whitespace
+        continue;
+      } else {
+        // For the first non-empty chunk, remove leading whitespace. This is specifically to account for thinking models like DeepSeek R1, as the strip middleware (e.g., in models.ts) already handles leading whitespace for these models.
+        const text = chunk.replace(/^\s+/, "");
+        process.stdout.write(text);
+        fullResponse += text;
+        firstOutput = true;
+        continue;
+      }
+    }
+    process.stdout.write(chunk);
+    fullResponse += chunk;
   }
 
   messages.push({ role: "assistant", content: fullResponse });

@@ -1,5 +1,5 @@
-import env from "./shared/env.js";
-import { verifyClaims } from "./agents/verifyClaims.js";
+import env from "./shared/env.ts";
+import { verifyClaims } from "./agents/verifyClaims.ts";
 
 const bedrock = env.readFile("data/bedrock-cross-region.md");
 const verifications = await verifyClaims(bedrock);

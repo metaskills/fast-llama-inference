@@ -1,7 +1,7 @@
-import env from "../shared/env.js";
+import env from "../shared/env.ts";
 import { Eval } from "braintrust";
 import { JSONDiff } from "autoevals";
-import { verifyClaims } from "../agents/verifyClaims.js";
+import { verifyClaims } from "../agents/verifyClaims.ts";
 
 await Eval("Verify Claims", {
   data: () => {

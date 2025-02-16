@@ -1,4 +1,4 @@
-import { Provider } from "../shared/provider.js";
+import { Provider } from "../shared/provider.ts";
 
 const provider = new Provider({ functionId: "extractclaims" });
 

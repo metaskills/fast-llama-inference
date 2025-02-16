@@ -1,6 +1,6 @@
-import env from "../shared/env.js";
-import { extractClaims } from "./extractClaims.js";
-import { verifyClaim } from "./verifyClaim.js";
+import env from "../shared/env.ts";
+import { extractClaims } from "./extractClaims.ts";
+import { verifyClaim } from "./verifyClaim.ts";
 
 const sources = [
   env.readFile("data/bedrock-cross-region/1.md"),

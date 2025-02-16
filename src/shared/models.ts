@@ -1,4 +1,4 @@
-import "./env.js";
+import "./env.ts";
 import type { LanguageModel } from "ai";
 import { wrapLanguageModel, extractReasoningMiddleware } from "ai";
 import { createGroq } from "@ai-sdk/groq";
@@ -41,6 +41,7 @@ const models: { [key: string]: LanguageModel } = {
   bedrock,
   groq,
   lmstudio,
+  deepseek,
 };
 
 const model = process.env.MODEL ? models[process.env.MODEL] : sambanova;

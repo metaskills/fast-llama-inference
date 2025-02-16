@@ -1,5 +1,5 @@
 import type { LanguageModel } from "ai";
-import { model } from "./models.js";
+import { model } from "./models.ts";
 import { generateText as _generateText, streamText as _streamText } from "ai";
 
 class Provider {
